@@ -2,10 +2,10 @@ const supabase = require("../supabase");
 
 async function getAllMatches(req, res) {
   try {
-    const { data, error } = supabase.from('partidos').select('*');
+    const { data, error } = await supabase.from('partidos').select('*');
     if (error) {
-      console.error("error en supabase: ", error.message);
-      return res.status(500).json({ error: error.message });
+        console.error('Error al obtener datos de Supabase:', error.message);
+        return res.status(500).json({ error: error.message });
     }
     res.json(data);
   } catch {
