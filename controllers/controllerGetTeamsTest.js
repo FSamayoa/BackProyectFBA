@@ -3,14 +3,10 @@ const supabase = require("../supabase");
 async function getAllMatches(req, res) {
   try {
 
-    
-    // await supabase.cache.schema();
-
     const { data, error } = await supabase
     .from('partidos')
     .select('*, equipos_locales (id, nom_equipo_local), equipos_visitantes (id, nom_equipo_visitante)');
     
-
 
     if (error) {
         console.error('Error al obtener datos de Supabase:', error.message);
