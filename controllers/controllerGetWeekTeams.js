@@ -1,12 +1,23 @@
 const supabase = require("../supabase");
 
-async function getAllMatches(req, res) {
+async function getWeekTeams(req, res) {
   try {
 
     const { data, error } = await supabase
+
     .from('part')
-    .select('*, list_locales (id, nom_local) ,list_visita (id, nom_visita)');
-    
+    .select('fecha')
+
+    // .from('part')
+    // .select(`*,
+    //     list_locales (id), 
+    //     list_locales (nom_local),
+    //     list_visita (id),
+    //     list_visita (nom_visita)
+    // `)
+   
+    // .filter('fecha', '>=', '2024-03-20')
+    // .filter('fecha', '<=', '2024-03-27');
 
     if (error) {
         console.error('Error al obtener datos de Supabase:', error.message);
@@ -19,4 +30,4 @@ async function getAllMatches(req, res) {
   }
 }
 
-module.exports = getAllMatches
+module.exports = getWeekTeams
