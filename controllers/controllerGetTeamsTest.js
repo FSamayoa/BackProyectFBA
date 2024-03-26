@@ -4,9 +4,8 @@ async function getAllMatches(req, res) {
   try {
 
     const { data, error } = await supabase
-    .from('partidos')
-    .select('*, equipos_locales (id, nom_equipo_local), equipos_visitantes (id, nom_equipo_visitante)');
-    
+    .from('part')
+    .select('*, list_locales (id, nom_local) ,list_visita (id, nom_visita)');
 
     if (error) {
         console.error('Error al obtener datos de Supabase:', error.message);
